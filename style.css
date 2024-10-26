@@ -1,0 +1,177 @@
+/* Imported font: Inter */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap");
+
+/* List of variables */
+
+:root {
+  /* Colors: */
+  --bg: #16181d;
+  --accent: #5686f5;
+  --accent-10: #5686f510;
+  --emphasis: #e8e8fd;
+  --text: #98a0b3;
+  /* Typography */
+  --h1: 2.25rem;
+  --h2: 1.5rem;
+  --h3: 1.25rem;
+  --paragraph: clamp(1rem, 0.875rem + 0.4vw, 1.125rem);
+  --info-text: 1rem;
+  --text-width-wide: 70ch;
+  --text-width-medium: 60ch;
+  --fw-bold: 700;
+  --fw-regular: 500;
+  --fw-light: 300;
+  /* Spacing */
+  --spacing-xxs: 0.5em;
+  --spacing-xs: 1em;
+  --spacing-s: 1.5em;
+  --spacing-m: 3em;
+  --spacing-l: 6em;
+  --spacing-xl: 8em;
+  /* Misc */
+  --radius-xs: 0.25em;
+  --radius-s: 0.5em;
+  --center-it: auto;
+}
+
+#scroll-tracker {
+  height: 4px;
+  background-color: var(--accent);
+  position: fixed;
+  inset: 0 0 auto;
+  transform-origin: left;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: "Inter", sans-serif;
+}
+
+main {
+  margin-top: var(--spacing-xl);
+  padding-block: var(--spacing-m);
+}
+
+article {
+  margin: var(--center-it);
+  max-width: var(--text-width-wide);
+}
+
+article > p ~ p {
+  margin-bottom: var(--spacing-s);
+}
+
+h1 {
+  color: var(--emphasis);
+  margin-bottom: var(--spacing-s);
+  font-size: var(--h1);
+  font-weight: var(--fw-bold);
+}
+
+h2 {
+  color: var(--emphasis);
+  margin-bottom: var(--spacing-s);
+  margin-top: var(--spacing-m);
+  font-size: var(--h2);
+  font-weight: var(--fw-bold);
+}
+
+h3 {
+  color: var(--accent);
+  margin-bottom: var(--spacing-s);
+  font-size: var(--h3);
+  font-weight: var(--fw-bold);
+}
+
+p {
+  font-size: var(--paragraph);
+  color: var(--text);
+  line-height: 32px;
+  letter-spacing: 0.25px;
+}
+
+em {
+  color: var(--emphasis);
+}
+
+cite {
+  font-weight: var(--fw-light);
+  color: var(--emphasis);
+  font-style: italic;
+}
+
+.info_block {
+  display: flex;
+  gap: 6px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.info {
+  font-size: var(--info-text);
+  color: var(--text);
+}
+
+.likes,
+.replies,
+.mentions {
+  font-size: var(--info-text);
+  color: var(--accent);
+}
+
+.last_update {
+  display: inline-block;
+  background-color: var(--accent-10);
+  color: var(--accent);
+  margin-bottom: var(--spacing-l);
+  font-size: var(--info-text);
+  padding: var(--spacing-xxs) var(--spacing-xs);
+  border-radius: var(--radius-s);
+}
+
+.link {
+  color: var(--accent);
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  margin-block: var(--spacing-m);
+  border-radius: var(--radius-xs);
+}
+
+.highlight {
+  margin: var(--center-it);
+  margin-bottom: var(--spacing-m);
+  background-color: var(--accent-10);
+  max-width: var(--text-width-medium);
+  border-radius: var(--radius-s);
+  padding: var(--spacing-m);
+}
+
+ul {
+  margin: var(--spacing-s);
+}
+
+li {
+  padding-bottom: var(--spacing-s);
+  margin-left: var(--spacing-xs);
+  font-size: var(--paragraph);
+  color: var(--emphasis);
+  list-style: square;
+}
+
+@media screen and (max-width: 760px) {
+  body {
+    padding-inline: var(--spacing-s);
+  }
+
+  .info_block {
+    flex-direction: column;
+  }
+
+  .highlight {
+    padding: var(--spacing-s);
+    max-width: var(--text-width-wide);
+  }
+}
