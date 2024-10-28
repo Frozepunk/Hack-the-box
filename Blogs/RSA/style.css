@@ -1,22 +1,11 @@
 :root {
-    --bg-color: #1e1e1e; /* Dark background for the entire page */
-    --text-color: #f5f5f5; /* Light text color for readability */
-    --heading-color: #4DAF7C; /* Green color for headings */
-    --link-color: #4DAF7C; /* Link color */
-    --code-bg: #2e2e2e; /* Dark background for code blocks */
-    --code-color: #f5f5f5; /* Light color for code text */
-    --section-bg: #2a2a2a; /* Dark background for sections */
-    --border-color: #444; /* Dark border color */
-
-    /* Light theme variables (optional, if you want to switch back) */
-    --light-bg-color: #f5f5f5; /* Light background for better contrast */
-    --light-text-color: #333; /* Darker text color for readability */
-    --light-heading-color: #007BFF; /* Blue color for headings */
-    --light-link-color: #007BFF; /* Link color */
-    --light-code-bg: #e8e8e8; /* Light background for code blocks */
-    --light-code-color: #333; /* Dark color for code text */
-    --light-section-bg: #ffffff; /* White background for sections */
-    --light-border-color: #ddd; /* Light border color */
+    --bg-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --heading-color: #4DAF7C;
+    --link-color: #66CDAA;
+    --section-bg: #2a2a2a;
+    --border-color: #444;
+    --card-bg: #282828;
 }
 
 * {
@@ -27,29 +16,32 @@
 
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, sans-serif; /* Changed to a more common font */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    padding: 0;
-    font-size: 1rem;
+    padding: 0 1rem;
 }
 
 .container {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem 1rem; /* Adjusted padding for better spacing */
+    padding: 2rem 1rem;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Typography */
 h1, h2, h3 {
     color: var(--heading-color);
     margin-bottom: 1rem;
-    font-weight: bold; /* Ensured headings are bold */
+    font-weight: bold;
 }
 
 h1 {
@@ -63,8 +55,8 @@ h1 {
 h2 {
     font-size: 1.8rem;
     margin-top: 2rem;
-    border-left: 4px solid var(--heading-color);
-    padding-left: 0.5rem;
+    border-left: 5px solid var(--heading-color);
+    padding-left: 0.75rem;
 }
 
 h3 {
@@ -74,39 +66,26 @@ h3 {
 
 /* Paragraphs and Lists */
 p, ol, ul {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 ol, ul {
-    padding-left: 1.5rem; /* Indent lists */
+    padding-left: 1.75rem;
 }
 
 li {
-    margin-bottom: 0.5rem; /* Space between list items */
-}
-
-/* Code blocks */
-pre.code-block {
-    background-color: var(--code-bg);
-    color: var(--code-color);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    overflow-x: auto;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    border: 1px solid var(--border-color);
+    margin-bottom: 0.5rem;
 }
 
 /* Links */
 a {
     color: var(--link-color);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 a:hover {
-    color: #66CDAA; /* Lighter green on hover */
+    color: #66FFA0;
     text-decoration: underline;
 }
 
@@ -114,24 +93,74 @@ a:hover {
 img {
     max-width: 100%;
     height: auto;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
 }
 
 img:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
 }
 
-/* Sections */
+/* General Section Styles */
 section {
     background-color: var(--section-bg);
-    padding: 1.5rem;
+    padding: 2rem;
     margin-bottom: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
     border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    border-left: 5px solid var(--heading-color);
+    padding-left: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    color: var(--heading-color);
+}
+
+/* RSA Vulnerabilities Section (Now Matches Other Sections) */
+.vulnerabilities {
+    background-color: var(--section-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.vulnerabilities h2 {
+    font-size: 1.8rem;
+    border-left: 5px solid var(--heading-color);
+    padding-left: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.vulnerabilities h3 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+}
+
+.vulnerabilities p {
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+}
+
+/* Consistent List Styling */
+.vulnerabilities ul {
+    padding-left: 1.75rem;
+}
+
+.vulnerabilities li {
+    margin-bottom: 0.5rem;
 }
 
 /* Responsive design */
@@ -141,11 +170,11 @@ section {
     }
 
     .container {
-        padding: 1.5rem 0.5rem; /* Adjust padding for smaller screens */
+        padding: 1.5rem;
     }
 
     h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     h2 {
@@ -155,11 +184,6 @@ section {
     h3 {
         font-size: 1.3rem;
     }
-
-    pre.code-block {
-        padding: 0.75rem;
-        font-size: 0.8125rem;
-    }
 }
 
 @media screen and (max-width: 480px) {
@@ -168,11 +192,11 @@ section {
     }
 
     .container {
-        padding: 1rem 0.25rem; /* Further adjust padding for very small screens */
+        padding: 1rem;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     h2 {
@@ -181,11 +205,6 @@ section {
 
     h3 {
         font-size: 1.2rem;
-    }
-
-    pre.code-block {
-        padding: 0.5rem;
-        font-size: 0.75rem;
     }
 }
 
@@ -201,49 +220,8 @@ section {
         padding: 0;
     }
 
-    pre.code-block {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        border: 1px solid #ddd;
-    }
-
     a {
         color: #0000EE;
         text-decoration: underline;
     }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 2cm;
-    }
-}
-
-/* RSA Vulnerabilities Section Styles */
-h2 {
-    margin-top: 2rem; /* Space above the section heading */
-    border-bottom: 2px solid var(--border-color); /* Underline for the section heading */
-    padding-bottom: 0.5rem; /* Space below the section heading */
-}
-
-h3 {
-    margin-top: 1.5rem; /* Space above subsection headings */
-    color: var(--heading-color); /* Use the defined heading color */
-}
-
-p {
-    margin-bottom: 1rem; /* Space below paragraphs */
-    line-height: 1.6; /* Improved line height for readability */
-    color: var(--text-color); /* Ensure text color is consistent */
-}
-
-/* Optional: Add a background color to the section */
-section.vulnerabilities {
-    background-color: var(--section-bg); /* Dark background for the section */
-    padding: 1.5rem; /* Padding around the section */
-    border-radius: 0.5rem; /* Rounded corners */
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-    border: 1px solid var(--border-color); /* Border for the section */
 }
