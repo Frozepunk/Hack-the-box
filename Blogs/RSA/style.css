@@ -220,3 +220,30 @@ section {
         margin: 2cm;
     }
 }
+
+/* RSA Vulnerabilities Section Styles */
+h2 {
+    margin-top: 2rem; /* Space above the section heading */
+    border-bottom: 2px solid var(--border-color); /* Underline for the section heading */
+    padding-bottom: 0.5rem; /* Space below the section heading */
+}
+
+h3 {
+    margin-top: 1.5rem; /* Space above subsection headings */
+    color: var(--heading-color); /* Use the defined heading color */
+}
+
+p {
+    margin-bottom: 1rem; /* Space below paragraphs */
+    line-height: 1.6; /* Improved line height for readability */
+    color: var(--text-color); /* Ensure text color is consistent */
+}
+
+/* Optional: Add a background color to the section */
+section.vulnerabilities {
+    background-color: var(--section-bg); /* Dark background for the section */
+    padding: 1.5rem; /* Padding around the section */
+    border-radius: 0.5rem; /* Rounded corners */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    border: 1px solid var(--border-color); /* Border for the section */
+}
