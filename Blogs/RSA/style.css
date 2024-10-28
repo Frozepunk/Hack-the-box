@@ -1,0 +1,222 @@
+:root {
+    --bg-color: #1e1e1e; /* Dark background for the entire page */
+    --text-color: #f5f5f5; /* Light text color for readability */
+    --heading-color: #4DAF7C; /* Green color for headings */
+    --link-color: #4DAF7C; /* Link color */
+    --code-bg: #2e2e2e; /* Dark background for code blocks */
+    --code-color: #f5f5f5; /* Light color for code text */
+    --section-bg: #2a2a2a; /* Dark background for sections */
+    --border-color: #444; /* Dark border color */
+
+    /* Light theme variables (optional, if you want to switch back) */
+    --light-bg-color: #f5f5f5; /* Light background for better contrast */
+    --light-text-color: #333; /* Darker text color for readability */
+    --light-heading-color: #007BFF; /* Blue color for headings */
+    --light-link-color: #007BFF; /* Link color */
+    --light-code-bg: #e8e8e8; /* Light background for code blocks */
+    --light-code-color: #333; /* Dark color for code text */
+    --light-section-bg: #ffffff; /* White background for sections */
+    --light-border-color: #ddd; /* Light border color */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: Arial, sans-serif; /* Changed to a more common font */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem; /* Adjusted padding for better spacing */
+}
+
+/* Typography */
+h1, h2, h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    font-weight: bold; /* Ensured headings are bold */
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    border-left: 4px solid var(--heading-color);
+    padding-left: 0.5rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+}
+
+/* Paragraphs and Lists */
+p, ol, ul {
+    margin-bottom: 1rem;
+}
+
+ol, ul {
+    padding-left: 1.5rem; /* Indent lists */
+}
+
+li {
+    margin-bottom: 0.5rem; /* Space between list items */
+}
+
+/* Code blocks */
+pre.code-block {
+    background-color: var(--code-bg);
+    color: var(--code-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+/* Links */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #66CDAA; /* Lighter green on hover */
+    text-decoration: underline;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+/* Sections */
+section {
+    background-color: var(--section-bg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 1.5rem 0.5rem; /* Adjust padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    pre.code-block {
+        padding: 0.75rem;
+        font-size: 0.8125rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+
+    .container {
+        padding: 1rem 0.25rem; /* Further adjust padding for very small screens */
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    pre.code-block {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    pre.code-block {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border: 1px solid #ddd;
+    }
+
+    a {
+        color: #0000EE;
+        text-decoration: underline;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 2cm;
+    }
+}

@@ -3,9 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Did the really break RSA encryption </title>
+    <title>RSA Encryption Algorithm</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Rsa-Encryption</h1>
+    <div class="container">
+        <h1>Did they really break RSA?</h1>
+        <h3>The Rivest-Shamir-Adleman (RSA) Encryption Algorithm</h3>
+        <p>RSA is an asymmetric encryption algorithm widely used in many products and services. Asymmetric encryption uses a key pair that is mathematically linked to encrypt and decrypt data. A private and public key are created, with the public key being accessible to anyone and the private key being a secret known only by the key pair creator.</p>
+        <p>If the public key is used for encryption, the private key must be used to decrypt the data.</p>
+        
+        <h2>How it works</h2>
+        <img src="img/image.png" alt="RSA">
+        <h3>Key Generation:</h3>
+        <ul>
+            <li>Alice picks two prime numbers: <strong>p = 11</strong> and <strong>q = 13</strong>.</li>
+            <li>She calculates <strong>n</strong>: <em>n = p × q = 143</em>.</li>
+            <li>She calculates the totient: <em>φ(n) = (p - 1) × (q - 1) = 120</em>.</li>
+            <li>Alice chooses <strong>e = 7</strong> as her public key.</li>
+            <li>She calculates her private key <strong>d = 103</strong> using a special math method.</li>
+        </ul>
+
+        <h3>Sending an Encrypted Message:</h3>
+        <ul>
+            <li>Bob wants to send a message (number <strong>9</strong>) to Alice.</li>
+            <li>He uses Alice's public key (<strong>n, e</strong> = (143, 7)) to encrypt his message.</li>
+            <li>The encrypted message (ciphertext <strong>C</strong>) is calculated as: <em>C = 9<sup>7</sup> mod 143 = 48</em>.</li>
+        </ul>
+
+        <h3>Decrypting the Message:</h3>
+        <ul>
+            <li>Alice receives Bob's encrypted message (<strong>C = 48</strong>).</li>
+            <li>She uses her private key to decrypt it: <em>M = 48<sup>103</sup> mod 143 = 9</em> (the original message).</li>
+        </ul>
+
+        <h3>Digital Signatures:</h3>
+        <ul>
+            <li>To sign a message, Alice creates a hash (a short summary of her message).</li>
+            <li>She encrypts the hash with her private key and sends it with the message.</li>
+            <li>Bob can verify the signature by decrypting the hash with Alice's public key.</li>
+            <li>If it matches the hash of the original message, it proves:
+                <ul>
+                    <li><strong>Authentication</strong>: Only Alice could have sent it.</li>
+                    <li><strong>Integrity</strong>: The message hasn’t been changed.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Encrypting for Confidentiality:</h3>
+        <p>Alice can also encrypt her message with Bob's public key for confidentiality.</p>
+
+        <h3>Digital Certificates:</h3>
+        <p>A digital certificate contains information about the owner and their public key. It is signed by a certificate authority, helping to verify public keys and their owners.</p>
+
+        <h2>Encryption Strength</h2>
+        <p>Encryption strength is directly tied to key size. Doubling key length can deliver an exponential increase in strength, although it does impair performance. RSA keys are typically 1024- or 2048-bits long, but experts believe that 1024-bit keys are no longer fully secure against all attacks. This is why the government and some industries are moving to a minimum key length of 2048-bits.</p>
+    </div>
+    <h2>RSA Vulnerabilities</h2>
+    <h3>Weak Random Number Generator</h3>
+    <p>When organizations use weak random number generators, then the prime numbers created by them are much easier to factor, thus giving attackers an easier time of cracking the algorithm.</p>
+    <h3>Poor Key Management</h3>
+    <p>RSA keys have certain requirements relating to their generation. If the prime numbers are too close, or if one of the numbers making up the private key is too small, then the key can be solved for much easier.</p>
+    <h3>Side Channel Attacks</h3>
+    <p>Side channel attacks are a method of attack that take advantage of the system running the encryption algorithm, as opposed to the algorithm itself. Attackers can analyze the power being used, use branch prediction analysis, or use timing attacks to find ways to ascertain the key used in the algorithm, thus compromising the data.</p>
+
 </body>
 </html>
+
