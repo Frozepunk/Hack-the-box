@@ -1,11 +1,16 @@
 :root {
-    --bg-color: #1e1e1e;
-    --text-color: #e0e0e0;
-    --heading-color: #4DAF7C;
-    --link-color: #66CDAA;
-    --section-bg: #2a2a2a;
-    --border-color: #444;
-    --card-bg: #282828;
+    --bg-color: #1e1e1e; /* Dark background for the entire page */
+    --text-color: #e0e0e0; /* Light text color for readability */
+    --heading-color: #ADD8E6; /* Light blue color for headings */
+    --link-color: #66CDAA; /* Light teal color for links */
+    --code-bg: #2e2e2e; /* Dark background for code blocks */
+    --code-color: #f5f5f5; /* Light color for code text */
+    --section-bg: #2a2a2a; /* Dark background for sections */
+    --border-color: #444; /* Dark border color */
+    --hover-color: #66FFA0; /* Lighter green for hover effects */
+    --shadow-color: rgba(0, 0, 0, 0.5); /* Shadow color */
+    --button-bg: #4DAF7C; /* Button background color */
+    --button-hover-bg: #66FFA0; /* Button hover background color */
 }
 
 * {
@@ -16,7 +21,6 @@
 
 html {
     font-size: 16px;
-    scroll-behavior: smooth;
 }
 
 body {
@@ -32,9 +36,14 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    background-color: var(--card-bg);
+    background-color: var(--section-bg);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px var(--shadow-color);
+    transition: transform 0.3s ease; /* Add a slight scaling effect */
+}
+
+.container:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
 }
 
 /* Typography */
@@ -42,6 +51,7 @@ h1, h2, h3 {
     color: var(--heading-color);
     margin-bottom: 1rem;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow for depth */
 }
 
 h1 {
@@ -57,6 +67,11 @@ h2 {
     margin-top: 2rem;
     border-left: 5px solid var(--heading-color);
     padding-left: 0.75rem;
+    transition: border-left 0.3s ease; /* Smooth transition for border */
+}
+
+h2:hover {
+    border-left-color: var(--hover-color); /* Change border color on hover */
 }
 
 h3 {
@@ -85,8 +100,26 @@ a {
 }
 
 a:hover {
-    color: #66FFA0;
+    color: var(--hover-color); /* Lighter green on hover */
     text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 10px var(--shadow-color); /* Add shadow to buttons */
+}
+
+button:hover {
+    background-color: var(--button-hover-bg); /* Change background on hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 /* Images */
@@ -95,12 +128,12 @@ img {
     height: auto;
     border-radius: 8px;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px var(--shadow-color);
     transition: transform 0.3s ease;
 }
 
 img:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 /* General Section Styles */
@@ -110,57 +143,7 @@ section {
     margin-bottom: 2rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-h2 {
-    font-size: 1.8rem;
-    margin-top: 2rem;
-    border-left: 5px solid var(--heading-color);
-    padding-left: 0.75rem;
-    margin-bottom: 1rem;
-    color: var(--heading-color);
-}
-
-h3 {
-    font-size: 1.4rem;
-    margin-top: 1.5rem;
-    color: var(--heading-color);
-}
-
-/* RSA Vulnerabilities Section (Now Matches Other Sections) */
-.vulnerabilities {
-    background-color: var(--section-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.vulnerabilities h2 {
-    font-size: 1.8rem;
-    border-left: 5px solid var(--heading-color);
-    padding-left: 0.75rem;
-    margin-bottom: 1rem;
-}
-
-.vulnerabilities h3 {
-    font-size: 1.4rem;
-    margin-top: 1.5rem;
-}
-
-.vulnerabilities p {
-    margin-bottom: 1.25rem;
-    line-height: 1.6;
-}
-
-/* Consistent List Styling */
-.vulnerabilities ul {
-    padding-left: 1.75rem;
-}
-
-.vulnerabilities li {
-    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 20px var(--shadow-color);
 }
 
 /* Responsive design */
@@ -223,5 +206,13 @@ h3 {
     a {
         color: #0000EE;
         text-decoration: underline;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 2cm;
     }
 }
