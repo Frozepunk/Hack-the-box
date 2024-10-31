@@ -5,7 +5,7 @@ Welcome to my personal blog! Here, I share insights, cool finds, and things I le
 ## ✨ Features
 
 - **Knowledge Sharing**: Read about my latest discoveries, learnings, and personal growth journey.
-- **Interesting Topics**: I explore a range of topics, from technology and programming to cyber security  hacks and more. Be a part of my journey
+- **Interesting Topics**: I explore a range of topics, from technology and programming to cyber security ,  ethical hacking and more. Be a part of my journey
 
 ## 📸 Preview
 [Visit My Blog](https://frozepunk.github.io/Whoami-s-Blog/)
