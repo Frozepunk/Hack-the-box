@@ -3,72 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name='impact-site-verification' value='b9dfa632-f6b1-41b2-a29b-8d2a2619db4c'>
-    <title>Whoami's Blog</title>
+    <title>Testing Mouse Animation</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="#" class="logo">Whoami's Blog</a>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#blogs">Blogs</a></li>
-            <li><a href="https://x.com/Frozepunk">Contact</a></li>
-        </ul>
-    </nav>
+    <div id="main">
+        <div id="cursor"></div>
 
-    <!-- Scroll Tracker -->
-    <div id="scroll-tracker"></div>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <a href="#" class="logo">Whoami's Blog</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+                <li><a href="https://x.com/Frozepunk">Contact</a></li>
+            </ul>
+        </nav>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Blog Header -->
-        <section class="blog-header">
-            <h1>Welcome to My Cybersecurity Journey</h1>
-            <p class="subtitle">Exploring CTFs, Pentesting, and Red Team Tactics</p>
-        </section>
+        <!-- Scroll Tracker -->
+        <div id="scroll-tracker"></div>
 
-        <!-- About Section -->
-        <article>
-            <h2>About Me</h2>
-            <p>
-                Hi, my name is Prajwal N. My passion for cybersecurity is driven by an insatiable curiosity and a relentless pursuit of knowledge. I began with a fascination for understanding how systems work, which quickly led me to the world of Capture the Flag (CTF) competitions and pentesting. I enjoy the challenge of uncovering vulnerabilities and testing security mechanisms, both from a defensive and offensive perspective. As a red team enthusiast, I constantly push my skills to the limit, simulating real-world attacks and striving to outsmart sophisticated defenses.
-            </p>
-        </article>
+        <!-- Main Content -->
+        <main>
+            <!-- Blog Header -->
+            <section class="blog-header">
+                <h1>Welcome to My Cybersecurity Journey</h1>
+                <p class="subtitle">Exploring CTFs, Pentesting, and Red Team Tactics</p>
+            </section>
 
-        <!-- Blog Posts Section -->
-        <section id="blogs">
-            <div class="blog-post">
-                <a href="Blogs/TryHackme/Cheese_CTF/index.html">                
-                <h3>Chese Ctf</h3>
-            </a>
-                <p>Posted on Sep 26, 2024</p>
-            </div>
-        </section>
-        <section id="blogs">
-            <div class="blog-post">
-                <a href="Blogs/RSA/index.html">                
-                <h3>Did They really break RSA </h3>
-            </a>
-                <p>Posted on  October 28, 2024</p>
-            </div>
-        </section>
-        <section id="blogs">
-            <div class="blog-post">
-                <a href="Blogs/Ransomewares/index.html">                
-                <h3>Duqu 2.0: The most sophisticated malware ever seen </h3>
-            </a>
-                <p>Posted on  October 31, 2024</p>
-            </div>
-        </section>
-    </main>
+            <!-- About Section -->
+            <article>
+                <h2>About Me</h2>
+                <p>
+                    Hi, my name is Prajwal N. My passion for cybersecurity is driven by an insatiable curiosity and a relentless pursuit of knowledge. I began with a fascination for understanding how systems work, which quickly led me to the world of Capture the Flag (CTF) competitions and pentesting. I enjoy the challenge of uncovering vulnerabilities and testing security mechanisms, both from a defensive and offensive perspective. As a red team enthusiast, I constantly push my skills to the limit, simulating real-world attacks and striving to outsmart sophisticated defenses.
+                </p>
+            </article>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Whoami's Blog. All Rights Reserved.</p>
-    </footer>
+            <!-- Blog Posts Section -->
+            <section id="blogs">
+                <div class="blog-post">
+                    <a href="Blogs/TryHackme/Cheese_CTF/index.html">                
+                        <h3>Cheese CTF</h3>
+                    </a>
+                    <p>Posted on Sep 26, 2024</p>
+                </div>
 
+                <div class="blog-post">
+                    <a href="Blogs/RSA/index.html">                
+                        <h3>Did They Really Break RSA?</h3>
+                    </a>
+                    <p>Posted on October 28, 2024</p>
+                </div>
+
+                <div class="blog-post">
+                    <a href="Blogs/Ransomewares/index.html">                
+                        <h3>Duqu 2.0: The Most Sophisticated Malware Ever Seen</h3>
+                    </a>
+                    <p>Posted on October 31, 2024</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Whoami's Blog. All Rights Reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js"></script>
 </body>
 </html>
