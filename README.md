@@ -8,6 +8,6 @@ Welcome to my personal blog! Here, I share insights, cool finds, and things I le
 - **Interesting Topics**: I explore a range of topics, from technology and programming to cyber security  hacks and more. Be a part of my journey
 
 ## 📸 Preview
+[Visit My Blog](https://frozepunk.github.io/Whoami-s-Blog/)
 
-![Blog Preview](https://frozepunk.github.io/Whoami-s-Blog/)
 
