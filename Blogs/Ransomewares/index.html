@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>testing to Post </title>
+    <title>Duqu Malware Report</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script> <!-- GSAP -->
 </head>
 <body>
-    <h1> Testing for a post </h1>
+    <div class="container">
+        <h1>Duqu 2.0 Malware</h1>
+        <h3>Is it still  the most sophisticated malware ever seen </h3>
+        <p>Duqu is a collection of computer malware discovered on September 1, 2011, thought by Kaspersky Labs to be related to the Stuxnet worm and believed to have been created by Unit 8200. Duqu exploited a zero-day vulnerability in Microsoft Windows.</p>
+
+        <h2>Initial Access</h2>
+        <ol>
+            <li>The original infection vector for Duqu 2.0 is currently unknown, although it is suspected that spear-phishing emails were used for the initial access.</li>
+            <li>In 2011, the Duqu malware used Word documents containing an exploit for a zero-day vulnerability (CVE-2011-3402) that relied on a malicious embedded TTF (True Type Font) file.
+                <p>This exploit allowed the attackers to jump directly into Kernel mode from a Word document, a very powerful and rare technique.</p>
+            </li>
+            <li>A similar technique and zero-day exploit (CVE-2014-4148) appeared again in June 2014 as part of an attack against a prominent international organization. It is possible that this was a parallel project from the Duqu group and that the same zero-day (CVE-2014-4148) might have been used to install Duqu 2.0.</li>
+        </ol>
+
+        <h2>Lateral Movement</h2>
+        <ol>
+            <li>Duqu 2.0 used lateral movement techniques and exploited another zero-day (CVE-2014-6324).</li>
+        </ol>
+
+        <p><strong>CVE-2014-6324 Details:</strong></p>
+        <p>The Kerberos Key Distribution Center (KDC) in Microsoft Windows Server 2003 SP2, Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8, Windows 8.1, and Windows Server 2012 Gold and R2 allows remote authenticated domain users to obtain domain administrator privileges via a forged signature in a ticket, as exploited in the wild in November 2014, aka "Kerberos Checksum Vulnerability."</p>
+        <p>This exploit allows an unprivileged domain user to escalate privileges to a domain administrator account.</p>
+        <p>Malicious modules were also observed performing “pass-the-hash” attacks within the local network, giving attackers several ways to achieve lateral movement.</p>
+        <p>Once attackers gained domain administrator privileges, they could use these permissions to infect other computers in the domain. In most attacks, they prepared Microsoft Windows Installer Packages (MSI) and deployed them remotely to other machines.</p>
+
+        <pre><code>msiexec.exe /i "C:\[…]\tmp8585e3d6.tmp" /q PROP=9c3c7076-d79f-4c</code></pre>
+
+        <p>The <code>PROP</code> value is a random 56-bit encryption key required to decrypt the main payload from the package.</p>
+
+        <p>Attackers also used Task Scheduler to start <code>msiexec.exe</code> remotely, loading a malicious stub inside the MSI file to decrypt and execute further malware resources directly from memory.</p>
+
+        <h2>Persistence Mechanisms</h2>
+        <ul>
+            <li><strong>Memory-Resident Design:</strong> Duqu 2.0 operates almost exclusively in the memory of infected systems, avoiding persistence on disk and making it harder to detect.</li>
+            <li><strong>Infection Strategy:</strong> Targets servers with high uptime to maintain a presence and re-infects machines in the domain that may have been disinfected by reboots.</li>
+            <li><strong>Technical Prowess:</strong> Runs kernel-level code through exploits, demonstrating advanced technical skills. Confidently operates within a network without relying on disk-based persistence.</li>
+            <li><strong>Stealth and Evasion:</strong> Avoids persistence to evade anti-APT technologies. Anti-APT tools detect disk anomalies, but Duqu 2.0’s memory-resident nature makes it elusive.</li>
+            <li><strong>Forensic Challenges:</strong> Requires memory snapshots for identification, as traditional forensic methods are less effective with its memory-only operation.</li>
+            <li><strong>Weakness:</strong> Vulnerable to power failures, which cause reboots and eradicate the malware.</li>
+            <li><strong>Reinfection Mechanism:</strong> Deploys drivers to a few machines with direct Internet access. Attackers can re-deploy the platform following a power outage, using previously acquired credentials.</li>
+        </ul>
+
+        <h2>Command and Control (C&amp;C) Mechanisms</h2>
+        <ul>
+            <li><strong>Advanced C&amp;C Mechanism:</strong> Enhances the 2011 variant with features similar to Regin, including network pipes, mailslots, raw filtering of network traffic, and hiding C&amp;C traffic in image files.</li>
+            <li><strong>Client Activation:</strong> Newly infected clients within a Windows LAN may not have a hardcoded C&amp;C, remaining dormant until activated by attackers via SMB network pipes and specific TCP/IP packets.</li>
+            <li><strong>C&amp;C Configuration:</strong> Configuration may include a local or external IP address, using servers with high uptime as C&amp;C intermediaries.</li>
+            <li><strong>Traffic Hiding:</strong> Versions from both 2011 and 2014/2015 hide C&amp;C traffic by appending it as encrypted data to image files (JPEG for 2011, GIF or JPEG for newer versions).</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>Duqu 2.0 is among the most sophisticated malware ever detected. Its development shows an exceptionally high level of expertise in cyber-espionage, leveraging advanced memory-resident techniques, zero-day exploits, and stealthy lateral movement. By avoiding disk persistence and maintaining flexibility in C&amp;C mechanisms, Duqu 2.0 evades most traditional detection methods and poses significant forensic challenges.</p>
+        <p>While other malware, like Stuxnet and Regin, have also demonstrated high complexity, Duqu 2.0’s reliance on memory-only operations, customized encryption, and sophisticated C&amp;C operations makes it one of the most formidable advanced persistent threats (APTs) in modern cybersecurity.</p>
+        <h2> Check out the below link for more information which was written by Kaspersky Lab</h2>
+        <a href="The_Mystery_of_Duqu_2_0_a_sophisticated_cyberespionage_actor_returns.pdf">The Duqu 2.0 </a>
+    </div>
+
+ <script src="script.js"></script>
 </body>
 </html>
