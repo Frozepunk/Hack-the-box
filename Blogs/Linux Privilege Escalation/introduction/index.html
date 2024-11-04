@@ -4,13 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to Linux Privilege Escalation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <h1> Introduction Linux Privilege Escalation</h1>
-    <img src="img/tux.png" alt="tux">
-    <p>Privilege escalation is the process of exploiting a vulnerability or weakness in a system or application to gain elevated privileges or access to resources that are normally restricted</p>
-    <p>Privilege escalation is a journey. There are no silver bullets, and much depends on the specific configuration of the target system. The kernel version, installed applications, supported programming languages, other users' passwords are a few key elements that will affect your road to the root shell.
-    </p>
-    <h3>What does "privilege escalation" mean?</h3>
+    <div class="container">
+        <h1>Introduction to Linux Privilege Escalation</h1>
+        <img src="img/tux.png" alt="Tux" class="responsive-img">
+        <h3>What does "privilege escalation" mean?</h3> 
+        <p>Privilege escalation is a journey. There are no silver bullets, and much depends on the specific configuration of the target system. The kernel version, installed applications, supported programming languages, and other users' passwords are a few key elements that will affect your road to the root shell.</p>
+        <p>For authorized users on Linux, privilege escalation allows elevated access to complete a specific task or make system configuration modifications.</p>
+        <p>On Linux, this is typically done via the sudo (Super User DO) command that enables condition-based privilege elevation for user accounts. To use sudo privilege elevation, you simply precede the command with sudo, which will then execute the command as a super-user.</p>
+        
+        <h3>Types of Privilege Escalation</h3>
+        <ul>
+            <li>Vertical privilege escalation</li>
+            <li>Horizontal privilege escalation</li>
+        </ul>
+        <img src="img/delinea-vertical-horizontal-privilege-escalation-linux-blog.webp" alt="Vertical and Horizontal privilege escalation" class="responsive-img">
+        
+        <p><strong>Vertical privilege escalation</strong> is when an attacker compromises a user account that has limited shell permissions on a system. They then look for ways to increase their privileges using the same account. For example, they might add the compromised account to the sudoers file so they can execute commands as the super-user account or use the special permission bit set by setuid and setgid to execute an executable as a privileged user.</p>
+        
+        <p><strong>Horizontal privilege escalation</strong> is when an attacker gains access to another user on the system with higher privileges than the initial one used to gain their initial shell. With higher-level privileges, an attacker can move freely around the network without detection.</p>
+        
+        <img src="img/image.png" alt="" class="responsive-img">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
