@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linux Privilege Escalation Enumeration</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Linux Privilege Escalation Enumeration</h1>
@@ -13,63 +14,82 @@
     <h2>Commands Used in Enumeration</h2>
     <p>Here are some common Linux commands that can help you gather information about the system and identify potential vectors for privilege escalation (gaining higher privileges):</p>
 
-    <h3>1. <code>hostname</code></h3>
-    <p>The <code>hostname</code> command simply returns the <strong>name</strong> of the system (or host) you're connected to. The hostname can sometimes give clues about the system’s role, location, or environment, which might help you decide on your next steps in an attack or penetration test.</p>
-    <img src="img/hostname.png" alt="hostname">
+    <!-- Commands -->
+    <div class="commands">
+        <div class="command">
+            <h3><code>hostname</code> <button class="copy-button" data-command="hostname">Copy</button></h3>
+            <p>The <code>hostname</code> command simply returns the <strong>name</strong> of the system (or host) you're connected to.</p>
+            <img src="img/hostname.png" alt="hostname">
+        </div>
 
-    <h3>2. <code>uname -a</code></h3>
-    <p>The <code>uname -a</code> command prints detailed <strong>system information</strong>, including the operating system's kernel version, which can be useful for identifying any known vulnerabilities specific to that version. If there are security flaws in the kernel, you might be able to exploit them to gain root access.</p>
-    <img src="img/uname-a.png" alt="">
+        <div class="command">
+            <h3><code>uname -a</code> <button class="copy-button" data-command="uname -a">Copy</button></h3>
+            <p>The <code>uname -a</code> command prints detailed <strong>system information</strong>, including the operating system's kernel version, which can be useful for identifying any known vulnerabilities specific to that version.</p>
+            <img src="img/uname-a.png" alt="uname -a">
+        </div>
 
-    <h3>3. <code>/proc/version</code></h3>
-    <p>The <code>/proc/version</code> file contains version details about the system’s kernel and may also include information about the system’s compiler (like GCC). The <code>/proc</code> directory in general is a special virtual filesystem in Linux that provides details about the system and running processes.</p>
-    <p>This information can help you identify the exact version of the kernel running on the system, which is important for finding known vulnerabilities that can be exploited.</p>
-    <img src="img/proc.png" alt="">
+        <div class="command">
+            <h3><code>/proc/version</code> <button class="copy-button" data-command="/proc/version">Copy</button></h3>
+            <p>The <code>/proc/version</code> file contains version details about the system’s kernel and may also include information about the system’s compiler (like GCC).</p>
+            <img src="img/proc.png" alt="proc version">
+        </div>
 
-    <h3>4. <code>/etc/issue</code></h3>
-    <p>The <code>/etc/issue</code> file typically contains a brief message or system information about the operating system version and some other details. It's displayed before the login prompt in many Linux distributions. However, this information can be easily modified, so it's not always reliable. Still, it can give you useful clues.</p>
-    <img src="img/etc.png" alt="">
+        <div class="command">
+            <h3><code>/etc/issue</code> <button class="copy-button" data-command="/etc/issue">Copy</button></h3>
+            <p>The <code>/etc/issue</code> file typically contains a brief message or system information about the operating system version and some other details.</p>
+            <img src="img/etc.png" alt="etc issue">
+        </div>
 
-    <h3>5. <code>ps</code></h3>
-    <p>The <code>ps</code> command shows you a <strong>list of processes</strong> running on the system. By default, it only shows processes for the current user’s session. This command is useful for finding out what software is running, whether there are any unusual processes, and if there are any background tasks that could potentially be exploited.</p>
-    <p>The output of <code>ps</code> includes:</p>
-    <ul>
-        <li><strong>PID</strong>: Process ID (a unique number identifying each running process)</li>
-        <li><strong>TTY</strong>: The terminal or session where the process is running</li>
-        <li><strong>TIME</strong>: The amount of CPU time used by the process (not the time the process has been running)</li>
-        <li><strong>CMD</strong>: The name of the command that started the process</li>
-    </ul>
-    <img src="img/ps.png" alt="">
+        <div class="command">
+            <h3><code>ps</code> <button class="copy-button" data-command="ps">Copy</button></h3>
+            <p>The <code>ps</code> command shows you a <strong>list of processes</strong> running on the system.</p>
+            <img src="img/ps.png" alt="ps command">
+        </div>
 
-    <h3>6. <code>env</code></h3>
-    <p>The <code>env</code> command lists <strong>environmental variables</strong>. These variables can contain useful system information, such as the paths to important files, user-specific data, and configurations. This is a great way to find potential clues about the system’s environment that could lead to privilege escalation.</p>
-    <img src="img/env.png" alt="">
+        <div class="command">
+            <h3><code>env</code> <button class="copy-button" data-command="env">Copy</button></h3>
+            <p>The <code>env</code> command lists <strong>environmental variables</strong>.</p>
+            <img src="img/env.png" alt="env command">
+        </div>
 
-    <h3>7. <code>sudo -l</code></h3>
-    <p>The <code>sudo -l</code> command shows you a list of <strong>commands</strong> that your user account is allowed to run with <strong>root privileges</strong> (or other higher privileges). If you have sudo access, this information is vital, as it can help you determine if there are any commands you can run that could lead to privilege escalation, such as running a shell or executing dangerous commands as root.</p>
-    <img src="img/sudo.png" alt="">
+        <div class="command">
+            <h3><code>sudo -l</code> <button class="copy-button" data-command="sudo -l">Copy</button></h3>
+            <p>The <code>sudo -l</code> command shows you a list of <strong>commands</strong> that your user account is allowed to run with <strong>root privileges</strong>.</p>
+            <img src="img/sudo.png" alt="sudo -l">
+        </div>
 
-    <h3>8. <code>ls</code></h3>
-    <p>The <code>ls</code> command is used to <strong>list files</strong> in a directory. To gather more detailed information, you should use the <code>-la</code> options with <code>ls</code> to display hidden files and detailed file information such as ownership and permissions.</p>
-    <p>Hidden files (those beginning with a dot <code>.</code>) might contain sensitive data or misconfigurations that can help in privilege escalation.</p>
-    <img src="img/ls.png" alt="">
+        <div class="command">
+            <h3><code>ls</code> <button class="copy-button" data-command="ls">Copy</button></h3>
+            <p>The <code>ls</code> command is used to <strong>list files</strong> in a directory.</p>
+            <img src="img/ls.png" alt="ls command">
+        </div>
 
-    <h3>9. <code>id</code></h3>
-    <p>The <code>id</code> command shows the <strong>user ID (UID)</strong>, <strong>group ID (GID)</strong>, and the groups the user belongs to. This is important for understanding your current privilege level on the system. Additionally, you can use the <code>id</code> command to check the privilege and group membership of other users on the system.</p>
-    <img src="img/id.png" alt="">
+        <div class="command">
+            <h3><code>id</code> <button class="copy-button" data-command="id">Copy</button></h3>
+            <p>The <code>id</code> command shows the <strong>user ID (UID)</strong>, <strong>group ID (GID)</strong>, and the groups the user belongs to.</p>
+            <img src="img/id.png" alt="id command">
+        </div>
 
-    <h3>10. <code>/etc/passwd</code></h3>
-    <p>The <code>/etc/passwd</code> file contains <strong>user account information</strong> for the system. Each line represents a different user, and it includes details such as the user’s name, UID, GID, and home directory. By reading this file, you can easily find out who the users on the system are and gather additional information for your next steps.</p>
-    <img src="img/etc_passed.png" alt="">
-    <img src="img/etc1.png" alt="">
-    <img src="img/etc2.png" alt="">
+        <div class="command">
+            <h3><code>/etc/passwd</code> <button class="copy-button" data-command="/etc/passwd">Copy</button></h3>
+            <p>The <code>/etc/passwd</code> file contains <strong>user account information</strong> for the system.</p>
+            <img src="img/etc_passed.png" alt="etc passwd">
+        </div>
 
-    <h3>11. <code>history</code></h3>
-    <p>The <code>history</code> command displays a list of <strong>recent commands</strong> that have been run in the current terminal session. By looking through this history, you might uncover useful information such as user actions, mistakes, or potentially even usernames or passwords stored in the command history. It’s a good idea to examine this output for any sensitive data that might have been left behind.</p>
-    <img src="img/history.png" alt="">
+        <div class="command">
+            <h3><code>history</code> <button class="copy-button" data-command="history">Copy</button></h3>
+            <p>The <code>history</code> command displays a list of <strong>recent commands</strong> that have been run in the current terminal session.</p>
+            <img src="img/history.png" alt="history command">
+        </div>
+    </div>
 
     <h2>Why Enumeration is Important</h2>
     <p>In summary, enumeration is an essential first step in understanding a system after you’ve gained initial access. By using these commands, you can gather crucial information that helps you assess your current privileges and identify possible ways to escalate those privileges. Always be thorough, as every detail could reveal a new opportunity or vector for privilege escalation.</p>
+    <p>In my next Blog I will share more command for enumeration</p>
+    <p>So bookmark me and if you like my content then give me a star on git hub and follow me on github</p>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
