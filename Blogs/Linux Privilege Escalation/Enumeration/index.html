@@ -14,5 +14,52 @@
         <img src="img/hostname.png" alt="hostname">
         <h3>uname -a</h3> 
         <p>The command <code>uname -a</code>will print system information giving us additional detail about the kernel used by the system. This will be useful when searching for any potential kernel vulnerabilities that could lead to privilege escalation.</p>
+        <img src="img/uname-a.png" alt="">
+        <h3>/proc/version</h3>
+        <p>The command <code>/proc/version</code>
+            The proc filesystem (procfs) provides information about the target system processes. You will find proc on many different Linux flavours, making it an essential tool to have in your arsenal.
+            Looking at /proc/version may give you information on the kernel version and additional data such as whether a compiler (e.g. GCC) is installed.</p>
+            <img src="img/proc.png" alt="">
+        <h3>/etc/issue</h3>
+        <p>Systems can also be identified by looking at the <code>/etc/issue</code> file. This file usually contains some information about the operating system but can easily be customized or changed. While on the subject, any file containing system information can be customized or changed. For a clearer understanding of the system, it is always good to look at all of these.</p>
+        <img src="img/etc.png" alt="">    
+        <h3>ps</h3>
+        <p>The <code>ps</code> command is an effective way to see the running processes on a Linux system. Typing ps on your terminal will show processes for the current shell.</p>
+        <p>The output of the ps  will show the following;</p>
+        <ul>
+            <li>
+                PID: The process ID (unique to the process)
+            </li>
+            <li>
+                TTY: Terminal type used by the user
+            </li>
+            <li>
+                Time: Amount of CPU time used by the process (this is NOT the time this process has been running for)
+            </li>
+            <li>
+                CMD: The command or executable running (will NOT display any command line parameter)
+            </li>
+        </ul>
+        <img src="img/ps.png" alt="">
+        <h3>env</h3>
+        <p>The <code> env</code> command will show environmental variables.</p>
+        <img src="img/env.png" alt="">
+        <h3>sudo -l</h3>
+        <p>
+        The command <code>sudo -l </code>The target system may be configured to allow users to run some (or all) commands with root privileges. The sudo -l command can be used to list all commands your user can run using sudo.</p>
+        <img src="img/sudo.png" alt="">
+        <h3>ls</h3>
+        <p>
+<code>ls</code> One of the common commands used in Linux is probably <code>ls</code>.While looking for potential privilege escalation vectors, please remember to always use the ls command with the <code>-la</code> parameter.</p>
+<img src="img/ls.png" alt="">
+<h3>id</h3>
+<p>The <code>id</code> command will provide a general overview of the user’s privilege level and group memberships.It is worth remembering that the <code>id</code> command can also be used to obtain the same information for another user </p>
+<img src="img/id.png" alt="">
+<h3>/etc/passwd</h3>
+<p>Reading the <code>/etc/passwd</code>  file can be an easy way to discover users on the system.</p>
+<img src="img/etc_passed.png" alt="">
+<img src="img/etc1.png" alt="">
+<img src="img/etc2.png" alt="">
+
 </body>
 </html>
