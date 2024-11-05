@@ -3,65 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux Privilege Escalation Enumeration </title>
+    <title>Linux Privilege Escalation Enumeration</title>
 </head>
 <body>
     <h1>Linux Privilege Escalation Enumeration</h1>
-    <p>Enumeration is the first step you have to take once you gain access to any system. You may have accessed the system by exploiting a critical vulnerability that resulted in root-level access or just found a way to send commands using a low privileged account</p>
-    <p>As you will see, enumeration is as important during the post-compromise phase as it is before.</p>
-    <h3>hostname</h3>
-        <p>The command <code>hostname</code> command will return the hostname of the target</p>
-        <img src="img/hostname.png" alt="hostname">
-        <h3>uname -a</h3> 
-        <p>The command <code>uname -a</code>will print system information giving us additional detail about the kernel used by the system. This will be useful when searching for any potential kernel vulnerabilities that could lead to privilege escalation.</p>
-        <img src="img/uname-a.png" alt="">
-        <h3>/proc/version</h3>
-        <p>The command <code>/proc/version</code>
-            The proc filesystem (procfs) provides information about the target system processes. You will find proc on many different Linux flavours, making it an essential tool to have in your arsenal.
-            Looking at /proc/version may give you information on the kernel version and additional data such as whether a compiler (e.g. GCC) is installed.</p>
-            <img src="img/proc.png" alt="">
-        <h3>/etc/issue</h3>
-        <p>Systems can also be identified by looking at the <code>/etc/issue</code> file. This file usually contains some information about the operating system but can easily be customized or changed. While on the subject, any file containing system information can be customized or changed. For a clearer understanding of the system, it is always good to look at all of these.</p>
-        <img src="img/etc.png" alt="">    
-        <h3>ps</h3>
-        <p>The <code>ps</code> command is an effective way to see the running processes on a Linux system. Typing ps on your terminal will show processes for the current shell.</p>
-        <p>The output of the ps  will show the following;</p>
-        <ul>
-            <li>
-                PID: The process ID (unique to the process)
-            </li>
-            <li>
-                TTY: Terminal type used by the user
-            </li>
-            <li>
-                Time: Amount of CPU time used by the process (this is NOT the time this process has been running for)
-            </li>
-            <li>
-                CMD: The command or executable running (will NOT display any command line parameter)
-            </li>
-        </ul>
-        <img src="img/ps.png" alt="">
-        <h3>env</h3>
-        <p>The <code> env</code> command will show environmental variables.</p>
-        <img src="img/env.png" alt="">
-        <h3>sudo -l</h3>
-        <p>
-        The command <code>sudo -l </code>The target system may be configured to allow users to run some (or all) commands with root privileges. The sudo -l command can be used to list all commands your user can run using sudo.</p>
-        <img src="img/sudo.png" alt="">
-        <h3>ls</h3>
-        <p>
-<code>ls</code> One of the common commands used in Linux is probably <code>ls</code>.While looking for potential privilege escalation vectors, please remember to always use the ls command with the <code>-la</code> parameter.</p>
-<img src="img/ls.png" alt="">
-<h3>id</h3>
-<p>The <code>id</code> command will provide a general overview of the user’s privilege level and group memberships.It is worth remembering that the <code>id</code> command can also be used to obtain the same information for another user </p>
-<img src="img/id.png" alt="">
-<h3>/etc/passwd</h3>
-<p>Reading the <code>/etc/passwd</code>  file can be an easy way to discover users on the system.</p>
-<img src="img/etc_passed.png" alt="">
-<img src="img/etc1.png" alt="">
-<img src="img/etc2.png" alt="">
-<h3>history</h3>
-<p>Looking at earlier commands with the <code>history</code> command can give us some idea about the target system and, albeit rarely, have stored information such as passwords or usernames.</p>
-<img src="img/history.png" alt="">
+
+    <p>When you gain access to a computer system, whether through an exploit or by using a low-privileged account, the next step is <strong>enumeration</strong>. This process involves gathering important details about the system. It helps you understand what kind of access you currently have and what vulnerabilities or misconfigurations you might be able to exploit to gain higher-level privileges. Enumeration is a crucial step, whether you're trying to break into a system or simply assessing your current access level after successfully exploiting a vulnerability.</p>
+
+    <h2>Commands Used in Enumeration</h2>
+    <p>Here are some common Linux commands that can help you gather information about the system and identify potential vectors for privilege escalation (gaining higher privileges):</p>
+
+    <h3>1. <code>hostname</code></h3>
+    <p>The <code>hostname</code> command simply returns the <strong>name</strong> of the system (or host) you're connected to. The hostname can sometimes give clues about the system’s role, location, or environment, which might help you decide on your next steps in an attack or penetration test.</p>
+    <img src="img/hostname.png" alt="hostname">
+
+    <h3>2. <code>uname -a</code></h3>
+    <p>The <code>uname -a</code> command prints detailed <strong>system information</strong>, including the operating system's kernel version, which can be useful for identifying any known vulnerabilities specific to that version. If there are security flaws in the kernel, you might be able to exploit them to gain root access.</p>
+    <img src="img/uname-a.png" alt="">
+
+    <h3>3. <code>/proc/version</code></h3>
+    <p>The <code>/proc/version</code> file contains version details about the system’s kernel and may also include information about the system’s compiler (like GCC). The <code>/proc</code> directory in general is a special virtual filesystem in Linux that provides details about the system and running processes.</p>
+    <p>This information can help you identify the exact version of the kernel running on the system, which is important for finding known vulnerabilities that can be exploited.</p>
+    <img src="img/proc.png" alt="">
+
+    <h3>4. <code>/etc/issue</code></h3>
+    <p>The <code>/etc/issue</code> file typically contains a brief message or system information about the operating system version and some other details. It's displayed before the login prompt in many Linux distributions. However, this information can be easily modified, so it's not always reliable. Still, it can give you useful clues.</p>
+    <img src="img/etc.png" alt="">
+
+    <h3>5. <code>ps</code></h3>
+    <p>The <code>ps</code> command shows you a <strong>list of processes</strong> running on the system. By default, it only shows processes for the current user’s session. This command is useful for finding out what software is running, whether there are any unusual processes, and if there are any background tasks that could potentially be exploited.</p>
+    <p>The output of <code>ps</code> includes:</p>
+    <ul>
+        <li><strong>PID</strong>: Process ID (a unique number identifying each running process)</li>
+        <li><strong>TTY</strong>: The terminal or session where the process is running</li>
+        <li><strong>TIME</strong>: The amount of CPU time used by the process (not the time the process has been running)</li>
+        <li><strong>CMD</strong>: The name of the command that started the process</li>
+    </ul>
+    <img src="img/ps.png" alt="">
+
+    <h3>6. <code>env</code></h3>
+    <p>The <code>env</code> command lists <strong>environmental variables</strong>. These variables can contain useful system information, such as the paths to important files, user-specific data, and configurations. This is a great way to find potential clues about the system’s environment that could lead to privilege escalation.</p>
+    <img src="img/env.png" alt="">
+
+    <h3>7. <code>sudo -l</code></h3>
+    <p>The <code>sudo -l</code> command shows you a list of <strong>commands</strong> that your user account is allowed to run with <strong>root privileges</strong> (or other higher privileges). If you have sudo access, this information is vital, as it can help you determine if there are any commands you can run that could lead to privilege escalation, such as running a shell or executing dangerous commands as root.</p>
+    <img src="img/sudo.png" alt="">
+
+    <h3>8. <code>ls</code></h3>
+    <p>The <code>ls</code> command is used to <strong>list files</strong> in a directory. To gather more detailed information, you should use the <code>-la</code> options with <code>ls</code> to display hidden files and detailed file information such as ownership and permissions.</p>
+    <p>Hidden files (those beginning with a dot <code>.</code>) might contain sensitive data or misconfigurations that can help in privilege escalation.</p>
+    <img src="img/ls.png" alt="">
+
+    <h3>9. <code>id</code></h3>
+    <p>The <code>id</code> command shows the <strong>user ID (UID)</strong>, <strong>group ID (GID)</strong>, and the groups the user belongs to. This is important for understanding your current privilege level on the system. Additionally, you can use the <code>id</code> command to check the privilege and group membership of other users on the system.</p>
+    <img src="img/id.png" alt="">
+
+    <h3>10. <code>/etc/passwd</code></h3>
+    <p>The <code>/etc/passwd</code> file contains <strong>user account information</strong> for the system. Each line represents a different user, and it includes details such as the user’s name, UID, GID, and home directory. By reading this file, you can easily find out who the users on the system are and gather additional information for your next steps.</p>
+    <img src="img/etc_passed.png" alt="">
+    <img src="img/etc1.png" alt="">
+    <img src="img/etc2.png" alt="">
+
+    <h3>11. <code>history</code></h3>
+    <p>The <code>history</code> command displays a list of <strong>recent commands</strong> that have been run in the current terminal session. By looking through this history, you might uncover useful information such as user actions, mistakes, or potentially even usernames or passwords stored in the command history. It’s a good idea to examine this output for any sensitive data that might have been left behind.</p>
+    <img src="img/history.png" alt="">
+
+    <h2>Why Enumeration is Important</h2>
+    <p>In summary, enumeration is an essential first step in understanding a system after you’ve gained initial access. By using these commands, you can gather crucial information that helps you assess your current privileges and identify possible ways to escalate those privileges. Always be thorough, as every detail could reveal a new opportunity or vector for privilege escalation.</p>
+
 </body>
 </html>
