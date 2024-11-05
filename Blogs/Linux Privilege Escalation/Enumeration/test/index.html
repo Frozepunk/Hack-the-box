@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy to Clipboard Example</title>
+    <style>
+        .code-container {
+            position: relative;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 16px;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            top: -30px;
+            right: 10px;
+            background-color: black;
+            color: white;
+            font-size: 12px;
+            padding: 5px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .show-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="code-container">
+    <button class="copy-btn" id="copyButton">Copy</button>
+    <pre id="codeSnippet">
+    // Example code here
+    function helloWorld() {
+        console.log("Hello, world!");
+    }
+    </pre>
+    <span class="tooltip" id="tooltip">Copied!</span>
+</div>
+
+<script>
+    const copyButton = document.getElementById('copyButton');
+    const codeSnippet = document.getElementById('codeSnippet');
+    const tooltip = document.getElementById('tooltip');
+
+    copyButton.addEventListener('click', function() {
+        const textArea = document.createElement('textarea');
+        textArea.value = codeSnippet.textContent.trim();
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        tooltip.classList.add('show-tooltip');
+        setTimeout(() => {
+            tooltip.classList.remove('show-tooltip');
+        }, 1500);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Privilege Escalation Enumeration </title>
+</head>
+<body>
+    <h1>Linux Privilege Escalation Enumeration</h1>
+    <p>Enumeration is the first step you have to take once you gain access to any system. You may have accessed the system by exploiting a critical vulnerability that resulted in root-level access or just found a way to send commands using a low privileged account</p>
+    <p>As you will see, enumeration is as important during the post-compromise phase as it is before.</p>
+    <h3>hostname</h3>
+        <p>The command <code>hostname</code> command will return the hostname of the target</p>
+        <img src="img/hostname.png" alt="hostname">
+        <h3>uname -a</h3> 
+        <p>The command <code>uname -a</code>will print system information giving us additional detail about the kernel used by the system. This will be useful when searching for any potential kernel vulnerabilities that could lead to privilege escalation.</p>
+</body>
+</html>
