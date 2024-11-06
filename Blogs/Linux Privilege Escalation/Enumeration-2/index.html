@@ -3,9 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux Privilege Escalation Enumeration Part-2</title>
+    <title>Linux Privilege Escalation</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Linux Privilege Escalation Enumeration Part-2</h2>
+    <header>
+        <h1>Linux Privilege Escalation in Linux Part-2 </h1>
+        <p class="intro">Gathering network and file information is essential for privilege escalation. Here’s how commands like <code>ifconfig</code>, <code>netstat</code>, and <code>find</code> can reveal opportunities to access restricted areas or exploit misconfigurations.</p>
+    </header>
+
+    <section class="commands-section">
+        <h2>Network Information Commands</h2>
+
+        <div class="command">
+            <h4><code>ifconfig</code></h4>
+            <p>This command provides details about network interfaces, such as IP addresses and subnet masks. Observing multiple interfaces could indicate the target system's connectivity to multiple networks, offering paths for lateral movement.</p>
+            <p><strong>Example:</strong> Interfaces like <code>eth0</code> for external connections, and <code>tun0</code> or <code>tun1</code> for internal connections, could suggest ways to explore internal networks.</p>
+        </div>
+
+        <div class="command">
+            <h4><code>ip route</code></h4>
+            <p>This command displays the routing table, showing reachable network segments. Knowing these routes helps in assessing further network exploitation targets.</p>
+        </div>
+
+        <div class="command">
+            <h4><code>netstat</code></h4>
+            <p>Gives insights into network connections, services, and listening ports. Knowing which services are open and connected can reveal exploitation opportunities.</p>
+            <ul>
+                <li><strong>Useful Flags:</strong>
+                    <ul>
+                        <li><code>-a</code>: Shows all connections and listening ports.</li>
+                        <li><code>-tp</code>: Displays connections with PID and program name.</li>
+                        <li><code>-s</code>: Shows network usage stats by protocol.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Importance:</strong> Discovering open, high-privilege services, especially those running as root, can aid privilege escalation.</p>
+        </div>
+    </section>
+
+    <section class="commands-section">
+        <h2>File Search Commands</h2>
+
+        <div class="command">
+            <h4><code>find</code></h4>
+            <p>The <code>find</code> command is essential for locating files based on criteria, useful for finding sensitive files or those with misconfigured permissions.</p>
+            <ul>
+                <li><strong>File discovery:</strong>
+                    <ul>
+                        <li><code>find / -type f -perm 0777</code>: Finds files with open read, write, and execute permissions.</li>
+                        <li><code>find / -name 'flag1.txt'</code>: Locates a specific file, useful in CTFs.</li>
+                    </ul>
+                </li>
+                <li><strong>Permissions-based searches:</strong>
+                    <ul>
+                        <li><code>find / -perm -u=s -type f 2>/dev/null</code>: Lists SUID files, which run with owner's privileges.</li>
+                        <li><code>find / -writable -type d 2>/dev/null</code>: Finds writable directories, potentially exploitable.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="command">
+            <h4>Finding Development Tools</h4>
+            <p>Using <code>find</code> to locate interpreters or compilers (e.g., <code>perl</code>, <code>python</code>, <code>gcc</code>) can open new ways to escalate privileges by running custom scripts or compiling code on the target.</p>
+        </div>
+    </section>
+
+    <section class="takeaways">
+        <h2>Key Privilege Escalation Takeaways</h2>
+        <ul>
+            <li><strong>SUID/GUID Misconfigurations</strong>: Exploiting SUID files owned by root can lead to privilege escalation.</li>
+            <li><strong>Writable and Executable Directories</strong>: Writable directories allow adding/modifying scripts potentially executed by others.</li>
+            <li><strong>Executable Tools</strong>: Access to tools like <code>python</code> and <code>gcc</code> offers routes to privilege escalation.</li>
+        </ul>
+        <p>Using these commands in a testing environment with explicit permission is crucial!</p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+
