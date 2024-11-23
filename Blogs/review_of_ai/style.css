@@ -1,0 +1,87 @@
+
+:root {
+    --light-bg: linear-gradient(to right, #f8f9fa, #e9ecef);
+    --dark-bg: linear-gradient(to right, #2e2e2e, #1c1c1c);
+    --light-text: #333;
+    --dark-text: #f8f9fa;
+    --light-blockquote-bg: #f8f9fa;
+    --dark-blockquote-bg: #444;
+    --light-blockquote-border: #6c757d;
+    --dark-blockquote-border: #888;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.8;
+    margin: 20px;
+    background: var(--light-bg);
+    color: var(--light-text);
+    overflow-x: hidden;
+    transition: all 0.5s ease;
+}
+
+h1 {
+    color: var(--light-text);
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+}
+
+blockquote {
+    font-style: italic;
+    color: var(--light-text);
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-left: 5px solid var(--light-blockquote-border);
+    background-color: var(--light-blockquote-bg);
+    max-width: 600px;
+    transition: all 0.5s ease;
+}
+
+p {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: justify;
+    transition: all 0.5s ease;
+}
+
+.animated {
+    opacity: 0;
+}
+
+.dark-mode {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.dark-mode h1 {
+    color: var(--dark-text);
+}
+
+.dark-mode blockquote {
+    color: var(--dark-text);
+    border-left: 5px solid var(--dark-blockquote-border);
+    background-color: var(--dark-blockquote-bg);
+}
+
+.dark-mode p {
+    color: var(--dark-text);
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
